@@ -12,9 +12,12 @@ public class ListManager {
         list[currentListNumber] = new Task(s);
         currentListNumber++;
         System.out.println(line +
-                "added: " +
-                s +
+                "Got it. I've added this task:\n" +
+                list[currentListNumber - 1] +
                 "\n" +
+                "Now you have " +
+                currentListNumber +
+                " tasks in the list.\n" +
                 line
         );
     }
