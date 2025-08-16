@@ -18,4 +18,8 @@ public class Task {
         String sign = (isMarked) ? "X" : " ";
         return "[" + sign + "] " + this.name;
     }
+
+    public String description() {
+        return toString();
+    }
 }

@@ -11,4 +11,9 @@ public class EventTask extends Task {
     public String toString() {
         return "[E]" + super.toString();
     }
+
+    @Override
+    public String description() {
+        return toString() + " (from: " + this.from + ", to: " + this.to + ")";
+    }
 }

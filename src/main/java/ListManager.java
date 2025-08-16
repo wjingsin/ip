@@ -8,12 +8,12 @@ public class ListManager {
         this.currentListNumber = 0;
     }
 
-    public void inputList(String s) {
-        list[currentListNumber] = new Task(s);
+    public void addTask(Task task) {
+        list[currentListNumber] = task;
         currentListNumber++;
         System.out.println(line +
                 "Got it. I've added this task:\n" +
-                list[currentListNumber - 1] +
+                list[currentListNumber - 1].description() +
                 "\n" +
                 "Now you have " +
                 currentListNumber +
@@ -21,6 +21,26 @@ public class ListManager {
                 line
         );
     }
+
+    //TodoTask
+    public void inputList(String s) {
+        Task task = new TodoTask(s);
+        addTask(task);
+    }
+
+    //DeadlineTask
+    public void inputList(String s, String by) {
+        Task task = new DeadlineTask(s, by);
+        addTask(task);
+    }
+
+    //EventTask
+    public void inputList(String s, String from, String to) {
+        Task task = new EventTask(s, from, to);
+        addTask(task);
+    }
+
+
     public void printList() {
         int i = 0;
         System.out.println(line +
@@ -29,16 +49,17 @@ public class ListManager {
             System.out.println(
                             (i + 1) +
                             ". " +
-                            list[i]);
+                            list[i].description());
             i++;
         }
+        System.out.println("\n" + line);
     }
 
     public void mark(int taskNumber) {
         list[taskNumber - 1].mark();
         System.out.println(line +
                         "Nice! I've marked this task as done: \n" +
-                        list[taskNumber - 1].toString() +
+                        list[taskNumber - 1] +
                         "\n" +
                         line);
     }
