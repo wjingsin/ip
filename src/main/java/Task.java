@@ -2,7 +2,10 @@ public class Task {
     private String name;
     private boolean isMarked;
 
-    public Task(String name) {
+    public Task(String name) throws MissingInformationException {
+        if (name.isBlank()) {
+            throw new MissingInformationException("The description cannot be empty.");
+        }
         this.name = name;
         this.isMarked = false;
     }

@@ -23,19 +23,19 @@ public class ListManager {
     }
 
     //TodoTask
-    public void inputList(String s) {
+    public void inputList(String s) throws MissingInformationException {
         Task task = new TodoTask(s);
         addTask(task);
     }
 
     //DeadlineTask
-    public void inputList(String s, String by) {
+    public void inputList(String s, String by) throws MissingInformationException{
         Task task = new DeadlineTask(s, by);
         addTask(task);
     }
 
     //EventTask
-    public void inputList(String s, String from, String to) {
+    public void inputList(String s, String from, String to) throws MissingInformationException{
         Task task = new EventTask(s, from, to);
         addTask(task);
     }

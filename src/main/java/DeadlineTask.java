@@ -1,6 +1,6 @@
 public class DeadlineTask extends Task {
     private String by;
-    public DeadlineTask(String name, String by) {
+    public DeadlineTask(String name, String by) throws MissingInformationException{
         super(name);
         this.by = by;
     }

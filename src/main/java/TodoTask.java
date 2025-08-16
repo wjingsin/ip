@@ -1,5 +1,5 @@
 public class TodoTask extends Task {
-    public TodoTask(String name) {
+    public TodoTask(String name) throws MissingInformationException {
         super(name);
     }
 

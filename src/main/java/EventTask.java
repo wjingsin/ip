@@ -1,7 +1,7 @@
 public class EventTask extends Task {
     private String from;
     private String to;
-    public EventTask(String name, String from, String to) {
+    public EventTask(String name, String from, String to) throws MissingInformationException {
         super(name);
         this.from = from;
         this.to = to;
