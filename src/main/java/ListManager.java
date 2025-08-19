@@ -13,13 +13,30 @@ public class ListManager {
         list.add(task);
         System.out.println(line +
                 "Got it. I've added this task:\n" +
-                list.get(list.size() - 1).description() +
+                task.description() +
                 "\n" +
                 "Now you have " +
                 list.size() +
                 " tasks in the list.\n" +
                 line
         );
+    }
+
+    public void deleteTask(int i) throws InvalidInputException {
+        if (i > list.size() || i < 1) {
+            throw new InvalidInputException("You currently have " + list.size() + " tasks currently." +
+                    "\n" +
+                    "Please try again. \n");
+        } else {
+            System.out.println(line +
+                    "Noted. I've removed this task:\n" +
+                    list.get(i - 1).description() +
+                    "\n" +
+                    "Now you have " +
+                    (list.size() - 1) +
+                    " tasks in the list.");
+            list.remove(i - 1);
+        }
     }
 
     //TodoTask

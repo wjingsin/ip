@@ -65,9 +65,20 @@ public class Ember {
                         } catch (ArrayIndexOutOfBoundsException e) {
                             System.out.println("After typing your task description, input your deadline with '/from (date) /to (date)'. ");
                         }
+                    } else if (userInput.toLowerCase().startsWith("delete")) {
+                        try {
+                            String[] parts = userInput.split(" ");
+                            if (parts.length == 2) {
+                                list.deleteTask(Integer.parseInt(parts[1]));
+                            }
+                        } catch (InvalidInputException | NumberFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
                     } else {
                         System.out.println(line);
-                        throw new InvalidInputException("Invalid Input");
+                        throw new InvalidInputException("You have entered an invalid input.\n " +
+                                "To add a new task, start with: todo, deadline or event.\n " +
+                                "To exit, type 'bye'.");
                     }
                 }
             } catch (InvalidInputException | MissingInformationException e) {
