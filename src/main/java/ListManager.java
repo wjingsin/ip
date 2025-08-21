@@ -75,7 +75,7 @@ public class ListManager {
     public void mark(int taskNumber) {
         list.get(taskNumber - 1).mark();
         System.out.println(line +
-                        "Nice! I've marked this task as done: \n" +
+                        "Nice! I've marked this task as done:\n" +
                         list.get(taskNumber - 1) +
                         "\n" +
                         line);
@@ -84,7 +84,7 @@ public class ListManager {
     public void unmark(int taskNumber) {
         list.get(taskNumber - 1).unmark();
         System.out.println(line +
-                "OK, I've marked this task as not done yet: \n" +
+                "OK, I've marked this task as not done yet:\n" +
                 list.get(taskNumber - 1).toString() +
                 "\n" +
                 line);

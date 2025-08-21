@@ -5,6 +5,9 @@ ____________________________________________________________
 
 ____________________________________________________________
 
+InvalidInputException: You have entered an invalid input.
+ To add a new task, start with: todo, deadline or event.
+ To exit, type 'bye'.
 ____________________________________________________________
 Got it. I've added this task:
 [T][ ] borrow book
@@ -31,6 +34,16 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-Bye. Hope to see you again soon!
+Nice! I've marked this task as done:
+[T][X] borrow book
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+
+1. [T][X] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm, to: 4pm)
+
 ____________________________________________________________
 
