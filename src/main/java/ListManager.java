@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class ListManager {
     private String line = "____________________________________________________________\n";
@@ -7,10 +8,15 @@ public class ListManager {
 
     public ListManager() {
         this.list = new ArrayList<>();
+        new ListFileWriter();
     }
 
+    public void updateText() {
+        ListFileWriter.listToText(list);
+    }
     public void addTask(Task task) {
         list.add(task);
+        updateText();
         System.out.println(line +
                 "Got it. I've added this task:\n" +
                 task.description() +
@@ -37,24 +43,32 @@ public class ListManager {
                     " tasks in the list.");
             list.remove(i - 1);
         }
+        updateText();
+
     }
 
     //TodoTask
     public void inputList(String s) throws MissingInformationException {
         Task task = new TodoTask(s);
         addTask(task);
+        updateText();
+
     }
 
     //DeadlineTask
     public void inputList(String s, String by) throws MissingInformationException{
         Task task = new DeadlineTask(s, by);
         addTask(task);
+        updateText();
+
     }
 
     //EventTask
     public void inputList(String s, String from, String to) throws MissingInformationException{
         Task task = new EventTask(s, from, to);
         addTask(task);
+        updateText();
+
     }
 
 
@@ -79,6 +93,8 @@ public class ListManager {
                         list.get(taskNumber - 1) +
                         "\n" +
                         line);
+        updateText();
+
     }
 
     public void unmark(int taskNumber) {
@@ -88,5 +104,7 @@ public class ListManager {
                 list.get(taskNumber - 1).toString() +
                 "\n" +
                 line);
+        updateText();
+
     }
 }
