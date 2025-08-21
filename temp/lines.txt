@@ -1,1 +1,3 @@
-[E][ ] from (from: Jan 6 2025, to: Jan 7 2025)
+[T][ ] math
+[D][ ] homework (by: Nov 11 2030)
+[E][X] event 1 (from: Jan 1 2025, to: Feb 20 2025)
