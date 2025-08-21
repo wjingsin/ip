@@ -1,10 +1,26 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
+
 public class EventTask extends Task {
-    private String from;
-    private String to;
-    public EventTask(String name, String from, String to) throws MissingInformationException {
+    private LocalDate from;
+    private LocalDate to;
+    private String fromFormatted;
+    private String toFormatted;
+    public EventTask(String name, String fromUnformatted, String toUnformatted)
+            throws MissingInformationException, InvalidInputException {
         super(name);
-        this.from = from;
-        this.to = to;
+        try {
+            this.from = LocalDate.parse(fromUnformatted);
+            this.to = LocalDate.parse(toUnformatted);
+            this.fromFormatted = from.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            this.toFormatted = to.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException("Input dates in format yyyy-mm-dd");
+
+        }
     }
 
     @Override
@@ -14,6 +30,7 @@ public class EventTask extends Task {
 
     @Override
     public String description() {
-        return toString() + " (from: " + this.from + ", to: " + this.to + ")";
+        return toString() + " (from: " + fromFormatted +
+                ", to: " + toFormatted + ")";
     }
 }

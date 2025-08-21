@@ -1,8 +1,19 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
+
 public class DeadlineTask extends Task {
-    private String by;
-    public DeadlineTask(String name, String by) throws MissingInformationException{
+    private LocalDate by;
+    private String byFormatted;
+    public DeadlineTask(String name, String byUnformatted) throws MissingInformationException, InvalidInputException{
         super(name);
-        this.by = by;
+        try {
+            this.by = LocalDate.parse(byUnformatted);
+            this.byFormatted = by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException("Input dates in format yyyy-mm-dd");
+        }
     }
 
     @Override
@@ -12,6 +23,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String description() {
-        return toString() + " (by: " + this.by + ")";
+        return toString() + " (by: " + byFormatted + ")";
     }
 }

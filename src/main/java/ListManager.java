@@ -48,7 +48,7 @@ public class ListManager {
     }
 
     //TodoTask
-    public void inputList(String s) throws MissingInformationException {
+    public void inputList(String s) throws MissingInformationException, InvalidInputException {
         Task task = new TodoTask(s);
         addTask(task);
         updateText();
@@ -56,7 +56,7 @@ public class ListManager {
     }
 
     //DeadlineTask
-    public void inputList(String s, String by) throws MissingInformationException{
+    public void inputList(String s, String by) throws MissingInformationException, InvalidInputException {
         Task task = new DeadlineTask(s, by);
         addTask(task);
         updateText();
@@ -64,7 +64,7 @@ public class ListManager {
     }
 
     //EventTask
-    public void inputList(String s, String from, String to) throws MissingInformationException{
+    public void inputList(String s, String from, String to) throws MissingInformationException, InvalidInputException {
         Task task = new EventTask(s, from, to);
         addTask(task);
         updateText();
