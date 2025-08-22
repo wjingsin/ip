@@ -29,6 +29,23 @@ class ListManagerTest {
     }
 
     @Test
+    void testInputList_AddDeadlineTask() throws MissingInformationException, InvalidInputException {
+        manager.inputList("Read book", "2025-01-01");
+        String expectedDescription = "[D][ ] Read book (by: Jan 1 2025)";
+        String actual = managerDescriptionList().get(0);
+        assertEquals(expectedDescription, actual);
+    }
+
+    @Test
+    void testInputList_AddEventTask() throws MissingInformationException, InvalidInputException {
+        manager.inputList("Read book", "2025-01-01", "2026-01-02");
+        String expectedDescription = "[E][ ] Read book (from: Jan 1 2025, to: Jan 2 2026)";
+        String actual = managerDescriptionList().get(0);
+        assertEquals(expectedDescription, actual);
+    }
+
+
+    @Test
     void testDeleteTask_RemovesCorrectTask() throws MissingInformationException, InvalidInputException {
         manager.inputList("Task A");
         manager.inputList("Task B");
