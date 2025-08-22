@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ListManager {
     private String line = "____________________________________________________________\n";
     private int currentListNumber;
-    private ArrayList<Task> list;
+    public ArrayList<Task> list;
 
     public ListManager() {
         this.list = new ArrayList<>();
