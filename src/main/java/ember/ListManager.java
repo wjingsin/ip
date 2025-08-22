@@ -1,5 +1,13 @@
+package ember;
+
+import ember.exception.InvalidInputException;
+import ember.exception.MissingInformationException;
+import ember.task.DeadlineTask;
+import ember.task.EventTask;
+import ember.task.Task;
+import ember.task.TodoTask;
+
 import java.util.ArrayList;
-import java.io.IOException;
 
 public class ListManager {
     private String line = "____________________________________________________________\n";
@@ -47,7 +55,7 @@ public class ListManager {
 
     }
 
-    //TodoTask
+    //Ember.TodoTask
     public void inputList(String s) throws MissingInformationException, InvalidInputException {
         Task task = new TodoTask(s);
         addTask(task);
@@ -55,7 +63,7 @@ public class ListManager {
 
     }
 
-    //DeadlineTask
+    //Ember.DeadlineTask
     public void inputList(String s, String by) throws MissingInformationException, InvalidInputException {
         Task task = new DeadlineTask(s, by);
         addTask(task);
@@ -63,7 +71,7 @@ public class ListManager {
 
     }
 
-    //EventTask
+    //Ember.EventTask
     public void inputList(String s, String from, String to) throws MissingInformationException, InvalidInputException {
         Task task = new EventTask(s, from, to);
         addTask(task);

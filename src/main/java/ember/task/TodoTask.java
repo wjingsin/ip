@@ -1,3 +1,7 @@
+package ember.task;
+
+import ember.exception.MissingInformationException;
+
 public class TodoTask extends Task {
     public TodoTask(String name) throws MissingInformationException {
         super(name);

@@ -1,3 +1,9 @@
+package ember.ui;
+
+import ember.exception.InvalidInputException;
+import ember.ListManager;
+import ember.exception.MissingInformationException;
+
 import java.util.Scanner;
 
 public class EmberUi {
@@ -6,7 +12,7 @@ public class EmberUi {
     ListManager list = new ListManager();
     public void run() {
         System.out.println(line +
-                "Hello! I'm Ember\n" +
+                "Hello! I'm Ember.Ember\n" +
                 "What can I do for you?\n" +
                 line
         );

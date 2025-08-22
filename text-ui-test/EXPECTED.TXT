@@ -1,11 +1,11 @@
 ____________________________________________________________
-Hello! I'm EmberUi
+Hello! I'm ember.ui.EmberUi
 What can I do for you?
 ____________________________________________________________
 
 ____________________________________________________________
 
-InvalidInputException: You have entered an invalid input.
+ember.exception.InvalidInputException: You have entered an invalid input.
  To add a new task, start with: todo, deadline or event.
  To exit, type 'bye'.
 ____________________________________________________________

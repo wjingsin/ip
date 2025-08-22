@@ -1,3 +1,7 @@
+package ember.task;
+
+import ember.exception.MissingInformationException;
+
 public class Task {
     private String name;
     private boolean isMarked;
