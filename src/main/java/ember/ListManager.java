@@ -8,6 +8,9 @@ import ember.task.Task;
 import ember.task.TodoTask;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ListManager {
     private String line = "____________________________________________________________\n";
@@ -93,6 +96,29 @@ public class ListManager {
         }
         System.out.println("\n" + line);
     }
+
+    public void printMatchingList() {
+        int i = 0;
+        System.out.println(line +
+                "Here are the matching tasks in your list:\n");
+        while (i < list.size() && list.get(i) != null) {
+            System.out.println(
+                    (i + 1) +
+                            ". " +
+                            list.get(i).description());
+            i++;
+        }
+        System.out.println("\n" + line);
+    }
+
+    public void findKeyword(String keyword) {
+        ArrayList<Task> tasks = (ArrayList<Task>) list.stream().filter(task -> task.getName()
+                .contains(keyword)).collect(Collectors.toList());
+        ListManager keywordList = new ListManager();
+        keywordList.list = tasks;
+        keywordList.printMatchingList();
+    }
+
 
     public void mark(int taskNumber) {
         list.get(taskNumber - 1).mark();

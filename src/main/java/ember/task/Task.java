@@ -29,4 +29,8 @@ public class Task {
     public String description() {
         return toString();
     }
+
+    public String getName() {
+        return name;
+    }
 }

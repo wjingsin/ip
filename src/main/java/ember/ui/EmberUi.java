@@ -79,6 +79,9 @@
                             } catch (InvalidInputException | NumberFormatException e) {
                                 System.out.println(e.getMessage());
                             }
+                        } else if (userInput.toLowerCase().startsWith("find")) {
+                            String keyword = userInput.substring(5);
+                            list.findKeyword(keyword);
                         } else {
                             System.out.println(line);
                             throw new InvalidInputException("You have entered an invalid input.\n " +
