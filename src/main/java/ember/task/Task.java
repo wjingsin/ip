@@ -2,10 +2,20 @@ package ember.task;
 
 import ember.exception.MissingInformationException;
 
+/**
+ * Represents a basic task with a name and completion status.
+ * Supports marking and unmarking the task as done.
+ */
 public class Task {
     private String name;
     private boolean isMarked;
 
+    /**
+     * Constructs a new Task with the specified name.
+     *
+     * @param name the description of the task; must not be blank
+     * @throws MissingInformationException if the task description is empty or blank
+     */
     public Task(String name) throws MissingInformationException {
         if (name.isBlank()) {
             throw new MissingInformationException("The description cannot be empty.");
@@ -14,9 +24,16 @@ public class Task {
         this.isMarked = false;
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void mark() {
         this.isMarked = true;
     }
+
+    /**
+     * Marks the task as not completed.
+     */
     public void unmark() {
         this.isMarked = false;
     }
@@ -26,6 +43,12 @@ public class Task {
         return "[" + sign + "] " + this.name;
     }
 
+    /**
+     * Returns the description of the task.
+     * By default, this is the same as the string representation.
+     *
+     * @return the task description
+     */
     public String description() {
         return toString();
     }
