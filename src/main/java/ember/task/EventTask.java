@@ -12,6 +12,7 @@ public class EventTask extends Task {
     private LocalDate to;
     private String fromFormatted;
     private String toFormatted;
+
     public EventTask(String name, String fromUnformatted, String toUnformatted)
             throws MissingInformationException, InvalidInputException {
         super(name);
