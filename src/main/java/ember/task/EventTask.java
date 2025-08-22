@@ -7,6 +7,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task with a event.
+ * This task includes a name and a from and to date in the format yyyy-mm-dd.
+ */
 public class EventTask extends Task {
     private LocalDate from;
     private LocalDate to;
@@ -32,6 +36,11 @@ public class EventTask extends Task {
         return "[E]" + super.toString();
     }
 
+    /**
+     * Returns the detailed description of this task, including the formatted event time.
+     *
+     * @return the full description of the task with event info
+     */
     @Override
     public String description() {
         return toString() + " (from: " + fromFormatted +

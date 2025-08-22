@@ -12,19 +12,38 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+/**
+ * Manages a list of tasks, allowing addition, deletion,
+ * marking, unmarking, and printing of tasks.
+ * Also handles persisting tasks to a file via ListFileWriter.
+ */
 public class ListManager {
     private String line = "____________________________________________________________\n";
     private int currentListNumber;
     public ArrayList<Task> list;
 
+    /**
+     * Constructs a new ListManager, initializes the task list,
+     * and prepares the file writer for saving the list.
+     */
     public ListManager() {
         this.list = new ArrayList<>();
         new ListFileWriter();
     }
 
+    /**
+     * Updates the saved task list text file to reflect the current list.
+     */
     public void updateText() {
         ListFileWriter.listToText(list);
     }
+
+    /**
+     * Adds a task to the list, updates the file,
+     * and prints confirmation to the console.
+     *
+     * @param task the Task object to add
+     */
     public void addTask(Task task) {
         list.add(task);
         updateText();
@@ -39,6 +58,12 @@ public class ListManager {
         );
     }
 
+    /**
+     * Deletes a task by its index in the list (1-based).
+     * Prints confirmation or throws an exception if index invalid.
+     *
+     * @throws InvalidInputException if index is out of bounds
+     */
     public void deleteTask(int i) throws InvalidInputException {
         if (i > list.size() || i < 1) {
             throw new InvalidInputException("You currently have " + list.size() + " tasks currently." +
@@ -131,6 +156,12 @@ public class ListManager {
 
     }
 
+    /**
+     * Unmarks the task at the given 1-based index (marks as not done).
+     * Updates the saved file and prints confirmation.
+     *
+     * @param taskNumber 1-based index of the task to unmark
+     */
     public void unmark(int taskNumber) {
         list.get(taskNumber - 1).unmark();
         System.out.println(line +

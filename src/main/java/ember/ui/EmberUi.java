@@ -6,10 +6,32 @@
 
     import java.util.Scanner;
 
+    /**
+     * Handles user interaction in the console for the Ember application.
+     * Reads commands from the user, executes task management commands,
+     * and provides feedback until the user exits.
+     */
     public class EmberUi {
         Scanner scanner = new Scanner(System.in);
         String line = "____________________________________________________________\n";
         ListManager list = new ListManager();
+
+        /**
+         * Starts the user interface loop, processes commands until "bye" is entered.
+         * Recognized commands include:
+         * <ul>
+         *     <li>list - displays current tasks</li>
+         *     <li>mark {index} - marks task at index as done</li>
+         *     <li>unmark {index} - marks task at index as not done</li>
+         *     <li>todo {description} - adds a todo task</li>
+         *     <li>deadline {description} /by {date} - adds a deadline task</li>
+         *     <li>event {description} /from {start} /to {end} - adds an event task</li>
+         *     <li>delete {index} - deletes the task at index</li>
+         *     <li>bye - exits the program</li>
+         * </ul>
+         *
+         * Invalid inputs will throw and catch exceptions, printing helpful messages.
+         */
         public void run() {
             System.out.println(line +
                     "Hello! I'm Ember\n" +
