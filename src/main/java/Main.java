@@ -1,5 +1,5 @@
 
-import ember.ui.Ember;
+import ember.ui.EmberUi;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
-    private Ember ember = new Ember();
+    private EmberUi ember = new EmberUi();
 
     @Override
     public void start(Stage stage) {

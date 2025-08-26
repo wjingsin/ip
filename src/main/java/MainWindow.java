@@ -1,4 +1,4 @@
-import ember.ui.Ember;
+import ember.ui.EmberUi;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -20,7 +20,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Ember ember;
+    private EmberUi ember;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image emberImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -31,7 +31,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Duke instance */
-    public void setEmber(Ember e) {
+    public void setEmber(EmberUi e) {
         ember = e;
     }
 
@@ -41,8 +41,11 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+//        dialogContainer.getChildren().addAll(
+//                DialogBox.getEmberDialog("Hello! I'm Ember\n What can I do for you?\n", emberImage)
+//        );
         String input = userInput.getText();
-        String response = ember.getResponse(input);
+        String response = ember.run(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getEmberDialog(response, emberImage)

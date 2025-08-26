@@ -44,18 +44,16 @@ public class ListManager {
      *
      * @param task the Task object to add
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         list.add(task);
         updateText();
-        System.out.println(line +
+        return
                 "Got it. I've added this task:\n" +
                 task.description() +
                 "\n" +
                 "Now you have " +
                 list.size() +
-                " tasks in the list.\n" +
-                line
-        );
+                " tasks in the list.\n";
     }
 
     /**
@@ -64,96 +62,85 @@ public class ListManager {
      *
      * @throws InvalidInputException if index is out of bounds
      */
-    public void deleteTask(int i) throws InvalidInputException {
+    public String deleteTask(int i) throws InvalidInputException {
         if (i > list.size() || i < 1) {
             throw new InvalidInputException("You currently have " + list.size() + " tasks currently." +
                     "\n" +
                     "Please try again. \n");
         } else {
-            System.out.println(line +
-                    "Noted. I've removed this task:\n" +
+            String response = "Noted. I've removed this task:\n" +
                     list.get(i - 1).description() +
                     "\n" +
                     "Now you have " +
                     (list.size() - 1) +
-                    " tasks in the list.");
+                    " tasks in the list.";
             list.remove(i - 1);
+            updateText();
+            return response;
         }
-        updateText();
 
     }
 
     //Ember.TodoTask
-    public void inputList(String s) throws MissingInformationException, InvalidInputException {
+    public String inputList(String s) throws MissingInformationException, InvalidInputException {
         Task task = new TodoTask(s);
-        addTask(task);
         updateText();
-
+        return addTask(task);
     }
 
     //Ember.DeadlineTask
-    public void inputList(String s, String by) throws MissingInformationException, InvalidInputException {
+    public String inputList(String s, String by) throws MissingInformationException, InvalidInputException {
         Task task = new DeadlineTask(s, by);
-        addTask(task);
         updateText();
+        return addTask(task);
 
     }
 
     //Ember.EventTask
-    public void inputList(String s, String from, String to) throws MissingInformationException, InvalidInputException {
+    public String inputList(String s, String from, String to) throws MissingInformationException, InvalidInputException {
         Task task = new EventTask(s, from, to);
-        addTask(task);
         updateText();
+        return addTask(task);
 
     }
 
 
-    public void printList() {
+    public String printList() {
         int i = 0;
-        System.out.println(line +
-                "Here are the tasks in your list:\n");
+        String response = "Here are the tasks in your list:\n";
         while (i < list.size() && list.get(i) != null) {
-            System.out.println(
-                            (i + 1) +
-                            ". " +
-                            list.get(i).description());
+            response += (i + 1) + ". " + list.get(i).description() + "\n";
             i++;
         }
-        System.out.println("\n" + line);
+        return response;
     }
 
-    public void printMatchingList() {
+    public String printMatchingList() {
         int i = 0;
-        System.out.println(line +
-                "Here are the matching tasks in your list:\n");
+        String response = "Here are the matching tasks in your list:\n";
         while (i < list.size() && list.get(i) != null) {
-            System.out.println(
-                    (i + 1) +
-                            ". " +
-                            list.get(i).description());
+            response += (i + 1) + ". " + list.get(i).description();
             i++;
         }
-        System.out.println("\n" + line);
+        return response;
     }
 
-    public void findKeyword(String keyword) {
+    public String findKeyword(String keyword) {
         ArrayList<Task> tasks = (ArrayList<Task>) list.stream().filter(task -> task.getName()
                 .contains(keyword)).collect(Collectors.toList());
         ListManager keywordList = new ListManager();
         keywordList.list = tasks;
-        keywordList.printMatchingList();
+        return keywordList.printMatchingList();
     }
 
 
-    public void mark(int taskNumber) {
+    public String mark(int taskNumber) {
         list.get(taskNumber - 1).mark();
-        System.out.println(line +
-                        "Nice! I've marked this task as done:\n" +
+        String response = "Nice! I've marked this task as done:\n" +
                         list.get(taskNumber - 1) +
-                        "\n" +
-                        line);
+                        "\n";
         updateText();
-
+        return response;
     }
 
     /**
@@ -162,14 +149,12 @@ public class ListManager {
      *
      * @param taskNumber 1-based index of the task to unmark
      */
-    public void unmark(int taskNumber) {
+    public String unmark(int taskNumber) {
         list.get(taskNumber - 1).unmark();
-        System.out.println(line +
-                "OK, I've marked this task as not done yet:\n" +
+        String response = "OK, I've marked this task as not done yet:\n" +
                 list.get(taskNumber - 1).toString() +
-                "\n" +
-                line);
+                "\n";
         updateText();
-
+        return response;
     }
 }
