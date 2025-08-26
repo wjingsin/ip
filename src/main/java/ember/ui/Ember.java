@@ -5,4 +5,8 @@ public class Ember {
         EmberUi ui = new EmberUi();
         ui.run();
     }
+
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
 }
