@@ -28,6 +28,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        // Show greeting message when app launches
+        dialogContainer.getChildren().add(
+                DialogBox.getEmberDialog("Hello! I'm Ember.\nWhat can I do for you?", emberImage)
+        );
+
     }
 
     /** Injects the Duke instance */
@@ -41,9 +46,6 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-//        dialogContainer.getChildren().addAll(
-//                DialogBox.getEmberDialog("Hello! I'm Ember\n What can I do for you?\n", emberImage)
-//        );
         String input = userInput.getText();
         String response = ember.run(input);
         dialogContainer.getChildren().addAll(

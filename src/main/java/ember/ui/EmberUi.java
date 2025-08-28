@@ -12,7 +12,6 @@
      * and provides feedback until the user exits.
      */
     public class EmberUi {
-//        String line = "____________________________________________________________\n";
         ListManager list = new ListManager();
         /**
          * Starts the user interface loop, processes commands until "bye" is entered.
@@ -31,11 +30,6 @@
          * Invalid inputs will throw and catch exceptions, printing helpful messages.
          */
         public String run(String userInput) {
-//            System.out.println(line +
-//                    "Hello! I'm Ember\n" +
-//                    "What can I do for you?\n" +
-//                    line
-//            );
             String response = "";
 
             try {
