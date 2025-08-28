@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.application.Platform;
 
 /**
  * Controller for the main GUI.
@@ -47,6 +48,14 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        if (input.trim().equalsIgnoreCase("bye")) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {}
+                Platform.runLater(Platform::exit);
+            }).start();
+        }
         String response = ember.run(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
