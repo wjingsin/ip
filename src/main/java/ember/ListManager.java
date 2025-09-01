@@ -8,8 +8,6 @@ import ember.task.Task;
 import ember.task.TodoTask;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -18,8 +16,6 @@ import java.util.stream.Collectors;
  * Also handles persisting tasks to a file via ListFileWriter.
  */
 public class ListManager {
-    private String line = "____________________________________________________________\n";
-    private int currentListNumber;
     public ArrayList<Task> list;
 
     /**
