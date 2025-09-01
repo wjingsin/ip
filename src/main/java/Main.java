@@ -24,7 +24,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(220);
             stage.setMinWidth(417);
-            stage.setMaxWidth(417); // Add this if you didn't automatically resize elements
+            stage.setResizable(true);
             fxmlLoader.<MainWindow>getController().setEmber(ember);  // inject the Duke instance
             stage.show();
         } catch (IOException e) {

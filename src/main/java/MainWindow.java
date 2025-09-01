@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.application.Platform;
 
 /**
  * Controller for the main GUI.
@@ -28,6 +29,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        // Show greeting message when app launches
+        dialogContainer.getChildren().add(
+                DialogBox.getEmberDialog("Hello! I'm Ember.\nWhat can I do for you?", emberImage)
+        );
+
     }
 
     /** Injects the Duke instance */
@@ -41,10 +47,15 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-//        dialogContainer.getChildren().addAll(
-//                DialogBox.getEmberDialog("Hello! I'm Ember\n What can I do for you?\n", emberImage)
-//        );
         String input = userInput.getText();
+        if (input.trim().equalsIgnoreCase("bye")) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {}
+                Platform.runLater(Platform::exit);
+            }).start();
+        }
         String response = ember.run(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
