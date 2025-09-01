@@ -39,11 +39,14 @@
                     response = list.printList();
                 } else if (userInput.toLowerCase().startsWith("mark")) {
                     String[] parts = userInput.split(" ");
+                    // Assumption: mark command should have exactly 2 parts
+                    assert parts.length >= 1 : "Split should produce at least one part";
                     if (parts.length == 2) {
                         response = list.mark(Integer.parseInt(parts[1]));
                     }
                 } else if (userInput.toLowerCase().startsWith("unmark")) {
                     String[] parts = userInput.split(" ");
+                    assert parts.length >= 1 : "Split should produce at least one part";
                     if (parts.length == 2) {
                         response = list.unmark(Integer.parseInt(parts[1]));
                     }
@@ -51,6 +54,7 @@
                     if (userInput.toLowerCase().startsWith("todo")) {
                         try {
                             String taskName = userInput.substring(5);
+                            assert taskName != null : "Task name should not be null after substring";
                             response = list.inputList(taskName);
                         } catch (StringIndexOutOfBoundsException e) {
                             response = "Remember to input a 'space' before typing your task description";
@@ -59,6 +63,7 @@
                         try {
                             String[] parts = userInput.split(" /by ");
                             String taskName = parts[0].substring(9);
+                            assert taskName != null : "Task name should not be null after substring";
                             String taskDeadline = parts[1];
                             response = list.inputList(taskName, taskDeadline);
                         } catch (StringIndexOutOfBoundsException e) {
@@ -70,6 +75,7 @@
                         try {
                             String[] parts = userInput.split(" /from ");
                             String taskName = parts[0].substring(6);
+                            assert taskName != null : "Task name should not be null after substring";
                             String[] taskDetail = parts[1].split(" /to ");
                             String taskStart = taskDetail[0];
                             String taskEnd = taskDetail[1];
@@ -82,6 +88,7 @@
                     } else if (userInput.toLowerCase().startsWith("delete")) {
                         try {
                             String[] parts = userInput.split(" ");
+                            assert parts.length >= 1 : "Split should produce at least one part";
                             if (parts.length == 2) {
                                 response = list.deleteTask(Integer.parseInt(parts[1]));
                             }
@@ -100,6 +107,8 @@
             } catch (InvalidInputException | MissingInformationException e) {
                 response = e.getMessage();
             }
+            // Post-condition: response should never be null at the end
+            assert response != null : "Response should never be null before returning";
         return response;
         }
     }
