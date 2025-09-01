@@ -126,10 +126,10 @@ public class ListManager {
     }
 
     public String findKeyword(String keyword) {
-        ArrayList<Task> tasks = (ArrayList<Task>) list.stream().filter(task -> task.getName()
+        ArrayList<Task> filteredTasks = (ArrayList<Task>) list.stream().filter(task -> task.getName()
                 .contains(keyword)).collect(Collectors.toList());
         ListManager keywordList = new ListManager();
-        keywordList.list = tasks;
+        keywordList.list = filteredTasks;
         return keywordList.printMatchingList();
     }
 
