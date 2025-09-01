@@ -37,11 +37,14 @@
                     response = list.printList();
                 } else if (userInput.toLowerCase().startsWith("mark")) {
                     String[] parts = userInput.split(" ");
+                    // Assumption: mark command should have exactly 2 parts
+                    assert parts.length >= 1 : "Split should produce at least one part";
                     if (parts.length == 2) {
                         response = list.mark(Integer.parseInt(parts[1]));
                     }
                 } else if (userInput.toLowerCase().startsWith("unmark")) {
                     String[] parts = userInput.split(" ");
+                    assert parts.length >= 1 : "Split should produce at least one part";
                     if (parts.length == 2) {
                         response = list.unmark(Integer.parseInt(parts[1]));
                     }
@@ -96,6 +99,8 @@
             } catch (InvalidInputException | MissingInformationException e) {
                 response = e.getMessage();
             }
+            // Post-condition: response should never be null at the end
+            assert response != null : "Response should never be null before returning";
         return response;
         }
     }
