@@ -121,9 +121,23 @@ public class ListManager {
         return response;
     }
 
+    /**
+     * Finds tasks whose names contain the given keyword (non-case-sensitive substring match),
+     * find items even if the keyword matches the item only partially
+     * builds a temporary list with those tasks, and returns the formatted output
+     * from printMatchingList().
+     *
+     * Behavior notes:
+     * - Matching uses String.contains and is case-sensitive.
+     * - The original list remains unchanged.
+     *
+     * @param keyword the substring to search for within each task's name; must not be null
+     * @return a formatted string of matching tasks produced by printMatchingList()
+     */
     public String findKeyword(String keyword) {
-        ArrayList<Task> filteredTasks = (ArrayList<Task>) list.stream().filter(task -> task.getName()
-                .contains(keyword)).collect(Collectors.toList());
+        ArrayList<Task> filteredTasks = (ArrayList<Task>) list.stream()
+                .filter(task -> task.getName().toLowerCase()
+                .contains(keyword.toLowerCase())).collect(Collectors.toList());
         ListManager keywordList = new ListManager();
         keywordList.list = filteredTasks;
         return keywordList.printMatchingList();
