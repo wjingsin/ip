@@ -91,6 +91,10 @@
                 } else if (userInput.toLowerCase().startsWith("find")) {
                     String keyword = userInput.substring(5);
                     response = list.findKeyword(keyword);
+                } else if (userInput.toLowerCase().startsWith("list by name")) {
+                    response = list.sortByName();
+                } else if (userInput.toLowerCase().startsWith("list by date")) {
+                    response = list.sortByDate();
                 } else {
                     throw new InvalidInputException("You have entered an invalid input.\n " +
                             "To add a new task, start with: todo, deadline or event.\n " +

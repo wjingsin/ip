@@ -46,8 +46,8 @@ public class ListManager {
         return
                 "Got it. I've added this task:\n" +
                 task.description() +
-                "\n" +
-                "Now you have " +
+                "\n\n" +
+                "There is now " +
                 list.size() +
                 " tasks in the list.\n";
     }
@@ -115,7 +115,7 @@ public class ListManager {
         int i = 0;
         String response = "Here are the matching tasks in your list:\n";
         while (i < list.size() && list.get(i) != null) {
-            response += (i + 1) + ". " + list.get(i).description();
+            response += (i + 1) + ". " + list.get(i).description() + '\n';
             i++;
         }
         return response;
@@ -129,7 +129,52 @@ public class ListManager {
         return keywordList.printMatchingList();
     }
 
+    /**
+     * Returns tasks sorted by name in ascending lexicographical order,
+     * builds a temporary list with the sorted tasks, and returns the formatted output
+     * from printMatchingList().
+     *
+     * Behavior notes:
+     * - Sorting uses String.compareTo (case-sensitive, locale-independent).
+     * - The original list remains unchanged; sorting is applied to a streamed copy.
+     *
+     * @return a formatted string of tasks sorted by name produced by printMatchingList()
+     */
+    public String sortByName() {
+        ArrayList<Task> sortedTask = (ArrayList<Task>) list.stream()
+                .sorted((a, b) -> a.getName().compareTo(b.getName()))
+                .collect(Collectors.toList());
+        ListManager sortedList = new ListManager();
+        sortedList.list = sortedTask;
+        return sortedList.printMatchingList();
+    }
 
+    /**
+     * Returns tasks sorted by date in ascending order,
+     * builds a temporary list with the sorted tasks, and returns the formatted output
+     * from printMatchingList().
+     *
+     * Behavior notes:
+     * - Sorting delegates to Task.getDate().compareTo; ensure getDate() is non-null or handle nulls accordingly.
+     * - The original list remains unchanged; sorting is applied to a streamed copy.
+     *
+     * @return a formatted string of tasks sorted by date produced by printMatchingList()
+     */
+    public String sortByDate() {
+        ArrayList<Task> sortedTask = (ArrayList<Task>) list.stream()
+                .sorted((a, b) -> a.getDate().compareTo(b.getDate()))
+                .collect(Collectors.toList());
+        ListManager sortedList = new ListManager();
+        sortedList.list = sortedTask;
+        return sortedList.printMatchingList();
+    }
+
+    /**
+     * Marks the task at the given 1-based index (marks as not done).
+     * Updates the saved file and prints confirmation.
+     *
+     * @param taskNumber 1-based index of the task to unmark
+     */
     public String mark(int taskNumber) {
         list.get(taskNumber - 1).mark();
         String response = "Nice! I've marked this task as done:\n" +

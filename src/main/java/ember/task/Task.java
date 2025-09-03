@@ -2,6 +2,8 @@ package ember.task;
 
 import ember.exception.MissingInformationException;
 
+import java.time.LocalDate;
+
 /**
  * Represents a basic task with a name and completion status.
  * Supports marking and unmarking the task as done.
@@ -41,6 +43,10 @@ public class Task {
     public String toString() {
         String sign = (isMarked) ? "X" : " ";
         return "[" + sign + "] " + this.name;
+    }
+
+    public LocalDate getDate(){
+        return LocalDate.MIN;
     }
 
     /**

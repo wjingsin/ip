@@ -27,10 +27,15 @@ public class DeadlineTask extends Task {
         super(name);
         try {
             this.by = LocalDate.parse(byUnformatted);
-            this.byFormatted = by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            this.byFormatted = by.format(DateTimeFormatter.ofPattern("d MMM, yyyy"));
         } catch (DateTimeParseException e) {
             throw new InvalidInputException("Input dates in format yyyy-mm-dd");
         }
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return this.by;
     }
 
     @Override

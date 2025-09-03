@@ -23,13 +23,18 @@ public class EventTask extends Task {
         try {
             this.from = LocalDate.parse(fromUnformatted);
             this.to = LocalDate.parse(toUnformatted);
-            this.fromFormatted = from.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-            this.toFormatted = to.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            this.fromFormatted = from.format(DateTimeFormatter.ofPattern("d MMM, yyyy"));
+            this.toFormatted = to.format(DateTimeFormatter.ofPattern("d MMM, yyyy"));
 
         } catch (DateTimeParseException e) {
             throw new InvalidInputException("Input dates in format yyyy-mm-dd");
 
         }
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return this.from;
     }
 
     @Override
