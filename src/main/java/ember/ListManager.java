@@ -100,7 +100,6 @@ public class ListManager {
 
     }
 
-
     public String printList() {
         int i = 0;
         String response = "Here are the tasks in your list:\n";

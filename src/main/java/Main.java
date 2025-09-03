@@ -15,6 +15,17 @@ public class Main extends Application {
 
     private EmberUi ember = new EmberUi();
 
+    /**
+     * Initializes and displays the primary stage.
+     * Loads MainWindow.fxml, sets up the Scene and minimum window size,
+     * injects the EmberUi instance into the controller, and shows the Stage.
+     *
+     * Notes:
+     * - This runs on the JavaFX Application Thread.
+     * - Any IOException during FXML loading is printed to the error stream.
+     *
+     * @param stage the primary Stage provided by the JavaFX runtime
+     */
     @Override
     public void start(Stage stage) {
         try {

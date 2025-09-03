@@ -17,6 +17,15 @@ public class EventTask extends Task {
     private String fromFormatted;
     private String toFormatted;
 
+    /**
+     * Constructs a {@code EventTask} with the specified task name and deadline.
+     *
+     * @param name           the name or description of the task
+     * @param fromUnformatted  the from date in the format yyyy-mm-dd
+     * @param toUnformatted  the to date in the format yyyy-mm-dd
+     * @throws MissingInformationException if the task name is empty
+     * @throws InvalidInputException if the deadline date format is invalid
+     */
     public EventTask(String name, String fromUnformatted, String toUnformatted)
             throws MissingInformationException, InvalidInputException {
         super(name);
