@@ -15,6 +15,8 @@ import java.util.Collections;
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
  * and a label containing text from the speaker.
+ * AI assistance was used to implement different colors and layouts
+ * for user vs bot dialog boxes.
  */
 public class DialogBox extends HBox {
     @FXML
@@ -22,9 +24,10 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text, Image img, boolean isUser) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            String fxmlFile = isUser ? "/view/UserDialogBox.fxml" : "/view/BotDialogBox.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource(fxmlFile));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -47,11 +50,11 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getEmberDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, img, false);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(text, img, true);
         db.flip();
         return db;
     }
