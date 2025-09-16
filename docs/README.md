@@ -1,6 +1,6 @@
 # Ember — Task Manager
 
-![Ember main window](UI.png)
+![Ember main window](Ui.png)
 
 Ember is a fast, lightweight desktop application that helps you **track todos, deadlines, and events**.  
 Type your commands, hit Enter, and let Ember keep your life organised.
