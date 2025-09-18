@@ -8,6 +8,7 @@ import ember.task.Task;
 import ember.task.TodoTask;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +25,7 @@ public class ListManager {
      */
     public ListManager() {
         try {
+            ListFileWriter fileWriter = new ListFileWriter();
             this.list = ListFileWriter.readFromFile();
         } catch (MissingInformationException | InvalidInputException e) {
             System.out.println("Error reading tasks from file: " + e.getMessage());
