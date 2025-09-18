@@ -16,7 +16,8 @@ public class EventTask extends Task {
     private LocalDate to;
     private String fromFormatted;
     private String toFormatted;
-
+    private String fromUnformatted;
+    private String toUnformatted;
     /**
      * Constructs a {@code EventTask} with the specified task name and deadline.
      *
@@ -34,6 +35,8 @@ public class EventTask extends Task {
             this.to = LocalDate.parse(toUnformatted);
             this.fromFormatted = from.format(DateTimeFormatter.ofPattern("d MMM, yyyy"));
             this.toFormatted = to.format(DateTimeFormatter.ofPattern("d MMM, yyyy"));
+            this.fromUnformatted = fromUnformatted;
+            this.toUnformatted = toUnformatted;
 
         } catch (DateTimeParseException e) {
             throw new InvalidInputException("Input dates in format yyyy-mm-dd");
@@ -60,5 +63,11 @@ public class EventTask extends Task {
     public String description() {
         return toString() + " (from: " + fromFormatted +
                 ", to: " + toFormatted + ")";
+    }
+
+    @Override
+    public String parseFormat() {
+        return toString() + " (from: " + fromUnformatted +
+                ", to: " + toUnformatted + ")";
     }
 }

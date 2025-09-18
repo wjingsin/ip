@@ -23,8 +23,12 @@ public class ListManager {
      * and prepares the file writer for saving the list.
      */
     public ListManager() {
-        this.list = new ArrayList<>();
-        new ListFileWriter();
+        try {
+            this.list = ListFileWriter.readFromFile();
+        } catch (MissingInformationException | InvalidInputException e) {
+            System.out.println("Error reading tasks from file: " + e.getMessage());
+            this.list = new ArrayList<>(); // fallback to empty list
+        }
     }
 
     /**

@@ -20,4 +20,9 @@ public class TodoTask extends Task {
     public String description() {
         return toString();
     }
+
+    @Override
+    public String parseFormat() {
+        return toString();
+    }
 }

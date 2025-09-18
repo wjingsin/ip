@@ -14,6 +14,7 @@ import java.time.format.DateTimeParseException;
 public class DeadlineTask extends Task {
     private LocalDate by;
     private String byFormatted;
+    private String byUnformatted;
 
     /**
      * Constructs a {@code DeadlineTask} with the specified task name and deadline.
@@ -28,6 +29,7 @@ public class DeadlineTask extends Task {
         try {
             this.by = LocalDate.parse(byUnformatted);
             this.byFormatted = by.format(DateTimeFormatter.ofPattern("d MMM, yyyy"));
+            this.byUnformatted = byUnformatted;
         } catch (DateTimeParseException e) {
             throw new InvalidInputException("Input dates in format yyyy-mm-dd");
         }
@@ -51,5 +53,10 @@ public class DeadlineTask extends Task {
     @Override
     public String description() {
         return toString() + " (by: " + byFormatted + ")";
+    }
+
+    @Override
+    public String parseFormat() {
+        return toString() + " (by: " + byUnformatted + ")";
     }
 }
