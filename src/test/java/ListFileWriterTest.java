@@ -1,18 +1,16 @@
-package ember;
-
+import ember.ListManager;
 import ember.exception.InvalidInputException;
 import ember.exception.MissingInformationException;
 import ember.task.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ListManagerTest {
+class ListFileWriterTest {
 
     private ListManager manager;
 

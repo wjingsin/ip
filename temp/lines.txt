@@ -1,4 +1,1 @@
-[T][ ] 1
-[T][X] 2
-[D][X] rjroer (by: 2025-01-01)
-[E][X] fokeofe (from: 2025-01-01, to: 2025-01-05)
+[D][ ] Submit report (by: 2025-10-26)
