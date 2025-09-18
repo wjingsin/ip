@@ -8,6 +8,7 @@ import ember.task.DeadlineTask;
 import ember.task.EventTask;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * methods to write, append, or read tasks from the file.
  */
 public class ListFileWriter {
-    private static final File file = new File("temp/lines.txt");
+    private static final File file = new File(System.getProperty("user.home"), "myapp/temp/lines.txt");
 
     public ListFileWriter() {
         File parentDir = file.getParentFile();
@@ -29,7 +30,15 @@ public class ListFileWriter {
 
         try {
             if (!file.exists()) {
-                file.createNewFile(); // only create if it doesn't exist
+                try (InputStream in = getClass().getClassLoader().getResourceAsStream("temp/lines.txt")) {
+                    if (in != null) {
+                        Files.copy(in, file.toPath()); // copy template from JAR
+                        System.out.println("Copied default file from JAR to " + file.getAbsolutePath());
+                    } else {
+                        file.createNewFile(); // fallback if no resource in JAR
+                        System.out.println("Created empty file at " + file.getAbsolutePath());
+                    }
+                }
             }
         } catch (IOException e) {
             System.out.println("Error creating the file: " + e.getMessage());

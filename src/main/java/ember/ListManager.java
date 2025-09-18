@@ -24,6 +24,7 @@ public class ListManager {
      */
     public ListManager() {
         try {
+            ListFileWriter fileWriter = new ListFileWriter();
             this.list = ListFileWriter.readFromFile();
         } catch (MissingInformationException | InvalidInputException e) {
             System.out.println("Error reading tasks from file: " + e.getMessage());
