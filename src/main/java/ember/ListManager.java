@@ -188,13 +188,20 @@ public class ListManager {
      *
      * @param taskNumber 1-based index of the task to unmark
      */
-    public String mark(int taskNumber) {
-        list.get(taskNumber - 1).mark();
-        String response = "Nice! I've marked this task as done:\n" +
-                        list.get(taskNumber - 1) +
-                        "\n";
-        updateText();
-        return response;
+    public String mark(int taskNumber) throws InvalidInputException{
+        if (taskNumber > list.size() || taskNumber < 1) {
+            throw new InvalidInputException("You only have " + list.size() + " tasks currently." +
+                    "\n" +
+                    "Please try again. \n");
+        }
+        else {
+            list.get(taskNumber - 1).mark();
+            String response = "Nice! I've marked this task as done:\n" +
+                    list.get(taskNumber - 1) +
+                    "\n";
+            updateText();
+            return response;
+        }
     }
 
     /**
@@ -203,12 +210,19 @@ public class ListManager {
      *
      * @param taskNumber 1-based index of the task to unmark
      */
-    public String unmark(int taskNumber) {
-        list.get(taskNumber - 1).unmark();
-        String response = "OK, I've marked this task as not done yet:\n" +
-                list.get(taskNumber - 1).toString() +
-                "\n";
-        updateText();
-        return response;
+    public String unmark(int taskNumber) throws InvalidInputException {
+        if (taskNumber > list.size() || taskNumber < 1) {
+            throw new InvalidInputException("You only have " + list.size() + " tasks currently." +
+                    "\n" +
+                    "Please try again. \n");
+        }
+        else {
+            list.get(taskNumber - 1).unmark();
+            String response = "OK, I've marked this task as not done yet:\n" +
+                    list.get(taskNumber - 1).toString() +
+                    "\n";
+            updateText();
+            return response;
+        }
     }
 }

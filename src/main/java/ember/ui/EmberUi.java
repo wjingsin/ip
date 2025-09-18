@@ -36,17 +36,25 @@
                 } else if (userInput.equalsIgnoreCase("list")) {
                     response = list.printList();
                 } else if (userInput.toLowerCase().startsWith("mark")) {
-                    String[] parts = userInput.split(" ");
-                    // Assumption: mark command should have exactly 2 parts
-                    assert parts.length >= 1 : "Split should produce at least one part";
-                    if (parts.length == 2) {
-                        response = list.mark(Integer.parseInt(parts[1]));
+                    try {
+                        String[] parts = userInput.split(" ");
+                        // Assumption: mark command should have exactly 2 parts
+                        assert parts.length >= 1 : "Split should produce at least one part";
+                        if (parts.length == 2) {
+                            response = list.mark(Integer.parseInt(parts[1]));
+                        }
+                    } catch (InvalidInputException e) {
+                        response = e.getMessage();
                     }
                 } else if (userInput.toLowerCase().startsWith("unmark")) {
-                    String[] parts = userInput.split(" ");
-                    assert parts.length >= 1 : "Split should produce at least one part";
-                    if (parts.length == 2) {
-                        response = list.unmark(Integer.parseInt(parts[1]));
+                    try {
+                        String[] parts = userInput.split(" ");
+                        assert parts.length >= 1 : "Split should produce at least one part";
+                        if (parts.length == 2) {
+                            response = list.unmark(Integer.parseInt(parts[1]));
+                        }
+                    } catch (InvalidInputException e) {
+                        response = e.getMessage();
                     }
                 } else if (userInput.toLowerCase().startsWith("todo")) {
                     try {
