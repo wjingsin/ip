@@ -29,8 +29,8 @@ Type your commands, hit Enter, and let Ember keep your life organised.
 | **Unmark task**       | `unmark INDEX` <br> e.g. `unmark 2` | Marks task #2 as not done |
 | **Delete task**       | `delete INDEX` <br> e.g. `delete 3` | Removes task #3 |
 | **Find tasks**        | `find KEYWORD` <br> e.g. `find book` | Lists tasks containing *book* |
-| **Sort by name**      | `sort name` | Lists tasks alphabetically |
-| **Sort by date**      | `sort date` | Lists tasks earliest-first |
+| **List by name**      | `list by name` | Lists tasks alphabetically |
+| **List by date**      | `list by date` | Lists tasks earliest-first |
 | **Exit**              | `bye` | Saves data and closes app |
 
 ---
